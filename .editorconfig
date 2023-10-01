@@ -1,0 +1,22 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+max_line_length = 120
+tab_width = 4
+
+# noinspection EditorConfigKeyCorrectness
+[*.{kt,kts}]
+ktlint_code_style = ktlint_official
+ij_kotlin_allow_trailing_comma = false
+ij_kotlin_allow_trailing_comma_on_call_site = false
+
+[.idea/**.xml]
+insert_final_newline = unset
+
+[*.{yml,yaml}]
+indent_size = 2
