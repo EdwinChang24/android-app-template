@@ -1,6 +1,9 @@
-@Suppress("DSL_SCOPE_VIOLATION") plugins {
+@Suppress("DSL_SCOPE_VIOLATION")
+plugins {
     alias(libs.plugins.androidApplication)
+    alias(libs.plugins.detekt)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.kotlinter)
 }
 
 android {
@@ -47,6 +50,7 @@ android {
 }
 
 dependencies {
+    detektPlugins(libs.detekt.rules.compose)
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
