@@ -35,6 +35,7 @@ fun replaceName(packageName: String, appName: String, username: String) {
 fun move() {
     File(".github").deleteRecursively()
     File("scripts/initialize.main.kts").deleteOnExit()
+    File("uninitialized.md").delete()
     templateDir.list()?.forEach { file ->
         File(templateDir, file).copyRecursively(File(file), overwrite = true)
     }
@@ -42,7 +43,9 @@ fun move() {
 }
 
 fun goToUninitialized() {
-
+    File(".github/workflows/initialize-project.yml").delete()
+    File("README.md").delete()
+    File("uninitialized.md").renameTo(File("README.md"))
 }
 
 if (args[0] == "a") {
