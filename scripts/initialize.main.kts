@@ -37,6 +37,7 @@ fun replaceName(packageName: String, appName: String, username: String) {
                 continue@outer
             }
         }
+        break
     }
 }
 
