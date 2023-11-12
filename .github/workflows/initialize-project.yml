@@ -17,7 +17,7 @@ jobs:
           kotlin scripts/initialize.main.kts -- "a" "$(gh repo view --json description -t "{{.description}}")" "$(gh repo view --json owner -t "{{.owner.login}}")"
       - name: Commit changes
         run: |
-          git config --local user.email "actions@github.com"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions"
           git add .
           git commit -m "feat: initialize repo"
