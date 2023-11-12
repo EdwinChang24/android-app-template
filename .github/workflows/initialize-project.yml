@@ -1,0 +1,27 @@
+name: Initialize project
+on: push
+
+jobs:
+  initialize-project:
+    runs-on: ubuntu-latest
+    if: github.event.repository.name != 'android-app-template'
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Run initialization script
+        run: |
+          repo_desc = $(gh repo view --json description -t "{{.description}}")
+          repo_owner = $(gh repo view --json owner -t "{{.owner.login}}")
+          kotlin scripts/initialize.kts -- "a" "$repo_desc" "$repo_owner"
+      - name: Commit changes
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -m "feat: initialize repo"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
