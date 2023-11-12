@@ -25,7 +25,7 @@ fun replaceName(packageName: String, appName: String, username: String) {
     }
     outer@ while (true) {
         for (file in templateDir.walkBottomUp()) {
-            if (Defaults.PACKAGE_NAME.replace('.', File.separatorChar) in file.absolutePath) {
+            if (file.isDirectory && Defaults.PACKAGE_NAME.replace('.', File.separatorChar) in file.absolutePath) {
                 file.renameTo(
                     File(
                         file.absolutePath.replace(
