@@ -26,14 +26,15 @@ fun replaceName(packageName: String, appName: String, username: String) {
     for (folder in listOf("androidTest", "main", "test")) {
         File(
             templateDir, "app/src/$folder/kotlin/${Defaults.PACKAGE_NAME.replace('.', File.separatorChar)}"
-        ).renameTo(
-            File(templateDir, "app/src/$folder/kotlin/${packageName.replace('.', File.separatorChar)}")
-        )
+        ).renameTo(File(
+            templateDir, "app/src/$folder/kotlin/${packageName.replace('.', File.separatorChar)}"
+        ).also { it.mkdirs() })
     }
 }
 
 fun move() {
     File(".github").deleteRecursively()
+    File("scripts/initialize.main.kts").deleteOnExit()
     templateDir.list()?.forEach { file ->
         File(templateDir, file).copyRecursively(File(file), overwrite = true)
     }
