@@ -23,21 +23,12 @@ fun replaceName(packageName: String, appName: String, username: String) {
             )
         }
     }
-    outer@ while (true) {
-        for (file in templateDir.walkBottomUp()) {
-            if (file.isDirectory && Defaults.PACKAGE_NAME.replace('.', File.separatorChar) in file.absolutePath) {
-                file.renameTo(
-                    File(
-                        file.absolutePath.replace(
-                            Defaults.PACKAGE_NAME.replace('.', File.separatorChar),
-                            packageName.replace('.', File.separatorChar)
-                        )
-                    )
-                )
-                continue@outer
-            }
-        }
-        break
+    for (folder in listOf("androidTest", "main", "test")) {
+        File(
+            templateDir, "app/src/$folder/kotlin/${Defaults.PACKAGE_NAME.replace('.', File.separatorChar)}"
+        ).renameTo(
+            File(templateDir, "app/src/$folder/kotlin/${packageName.replace('.', File.separatorChar)}")
+        )
     }
 }
 
