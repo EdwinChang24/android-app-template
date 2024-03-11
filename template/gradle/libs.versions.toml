@@ -11,7 +11,7 @@ espresso-core = "3.5.1"
 junit = "4.13.2"
 kotlin = "1.9.23"
 kotlinter = "4.2.0"
-lifecycle-runtime-ktx = "2.6.2"
+lifecycle-runtime-ktx = "2.7.0"
 
 [libraries]
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
